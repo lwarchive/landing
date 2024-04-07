@@ -9,7 +9,7 @@ resp = requests.get(f"https://api.github.com/orgs/{sys.argv[1]}/repos")
 output = []
 
 for i in resp.json():
-    if i["homepage"] is not None:
+    if (i["homepage"] is not None) or i['name'] == sys.argv[2]:
         output.append(f"\t\t<tr><td><a href=\"{i["homepage"]}\">{i["name"]}</a></td><td><a href=\"{i["html_url"]}\">Source</a></td></tr>")
 
 with open('template.html', 'r') as f:
