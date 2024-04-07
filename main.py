@@ -11,8 +11,9 @@ output = []
 print(f"Polling repositories for {sys.argv[1]}")
 
 for i in resp.json():
-    if (i["homepage"] is not None) or (i['name'] not in sys.argv[2]):
-        output.append(f"\t\t<tr><td><a href=\"{i["homepage"]}\">{i["name"]}</a></td><td><a href=\"{i["html_url"]}\">Source</a></td></tr>")
+    if (i["homepage"] is not None):
+        if (i['name'] not in sys.argv[2]):
+            output.append(f"\t\t<tr><td><a href=\"{i["homepage"]}\">{i["name"]}</a></td><td><a href=\"{i["html_url"]}\">Source</a></td></tr>")
 
 print(f"Created {len(output)} link(s) for discovered projects.")
 
