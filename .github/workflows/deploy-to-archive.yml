@@ -36,13 +36,13 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch --account-name lwarchivestorage --overwrite --auth-mode key -d '$web' -s output
+            az storage blob upload-batch --account-name "${{ vars.STORAGE_ACCOUNT_NAME }}" --overwrite --auth-mode key -d '$web' -s output
 
-      - name: Purge CDN endpoint
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az cdn endpoint purge --content-paths "/*" --profile-name "lwarchivecdn" --name "lwarchive" --resource-group "portflio"
+#      - name: Purge CDN endpoint
+#        uses: azure/CLI@v1
+#        with:
+#          inlineScript: |
+#           az cdn endpoint purge --content-paths "/*" --profile-name "${{ vars.CDN_NAME }}" --name "lwarchive" --resource-group "portflio"
 
       - name: Logout from Azure CLI
         run: |
